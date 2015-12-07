@@ -1,0 +1,5 @@
+#ifndef DAEMONMODE_HPP
+#define DAEMONMODE_HPP
+
+#endif // DAEMONMODE_HPP
+
