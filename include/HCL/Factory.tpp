@@ -10,7 +10,7 @@
 namespace Hcl
 {
     template<class T>
-    static Factory<T>& getInstance()
+    static Factory<T>& Factory<T>::getInstance()
     {
         static Factory<T> _instance;
         return _instance;

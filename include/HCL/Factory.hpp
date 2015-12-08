@@ -51,7 +51,7 @@ namespace Hcl
     };
 }
 
-#define REGISTRATOR_T(bns, bname, dns, dname) _FactoryRegistrator_##bns##__##bname##_##dns##__##dname
+#define REGISTRATOR_T(bns, bname, dns, dname) FactoryRegistrator_##bns##__##bname##_##dns##__##dname
 
 // Registration helper: use in target class compilation unit
 #define REGISTER_IN_FACTORY(bns, bname, dns, dname) \

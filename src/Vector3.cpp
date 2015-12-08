@@ -30,7 +30,7 @@ namespace Hcl
 
     Vector3::Vector3(const Vector3& v1)
     {
-        Hcl::Locker1 _(v1._m);
+        Locker1 _(v1._m);
         x = v1.x;
         y = v1.y;
         z = v1.z;
@@ -45,7 +45,7 @@ namespace Hcl
 
     Vector3& Vector3::operator = (const Vector3& v1)
     {
-        Hcl::Locker2 _(_m, v1._m);
+        Locker2 _(_m, v1._m);
         x = v1.x;
         y = v1.y;
         z = v1.z;
@@ -59,21 +59,21 @@ namespace Hcl
     void        Vector3::setY(long double v) {Locker1 _(_m); y = v;}
     void        Vector3::setZ(long double v) {Locker1 _(_m); z = v;}
     
-    long double Vector3::sqlength() const {Hcl::Locker1 _(_m); return (x * x + y * y + z * z);}
-    long double Vector3::length()   const {Hcl::Locker1 _(_m); return sqrt(sqlength());}
+    long double Vector3::sqlength() const {Locker1 _(_m); return (x * x + y * y + z * z);}
+    long double Vector3::length()   const {Locker1 _(_m); return sqrt(sqlength());}
 
-    Vector3 operator + (const Vector3& v1) {Hcl::Locker1 _(v1._m); return v1;}
-    Vector3 operator - (const Vector3& v1) {Hcl::Locker1 _(v1._m); return Vector3(-v1.x, -v1.y, -v1.z);}
+    Vector3 operator + (const Vector3& v1) {Locker1 _(v1._m); return v1;}
+    Vector3 operator - (const Vector3& v1) {Locker1 _(v1._m); return Vector3(-v1.x, -v1.y, -v1.z);}
 
-    Vector3 operator + (const Vector3& v1, const Vector3& v2){Hcl::Locker2 _(v1._m, v2._m); return Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);}
-    Vector3 operator - (const Vector3& v1, const Vector3& v2){Hcl::Locker2 _(v1._m, v2._m); return Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);}
-    Vector3 operator * (const Vector3& v1, long double    q1){Hcl::Locker1 _(v1._m); return Vector3(v1.x * q1, v1.y * q1, v1.z * q1);}
-    Vector3 operator / (const Vector3& v1, long double    q1){Hcl::Locker1 _(v1._m); return Vector3(v1.x / q1, v1.y / q1, v1.z / q1);}
-    Vector3 operator * (long double    q1, const Vector3& v1){Hcl::Locker1 _(v1._m); return Vector3(v1.x * q1, v1.y * q1, v1.z * q1);}
+    Vector3 operator + (const Vector3& v1, const Vector3& v2){Locker2 _(v1._m, v2._m); return Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);}
+    Vector3 operator - (const Vector3& v1, const Vector3& v2){Locker2 _(v1._m, v2._m); return Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);}
+    Vector3 operator * (const Vector3& v1, long double    q1){Locker1 _(v1._m); return Vector3(v1.x * q1, v1.y * q1, v1.z * q1);}
+    Vector3 operator / (const Vector3& v1, long double    q1){Locker1 _(v1._m); return Vector3(v1.x / q1, v1.y / q1, v1.z / q1);}
+    Vector3 operator * (long double    q1, const Vector3& v1){Locker1 _(v1._m); return Vector3(v1.x * q1, v1.y * q1, v1.z * q1);}
 
     Vector3& operator += (Vector3& v1, const Vector3& v2)
     {
-        Hcl::Locker2 _(v1._m, v2._m);
+        Locker2 _(v1._m, v2._m);
         v1.x += v2.x;
         v1.y += v2.y;
         v1.z += v2.z;
@@ -82,7 +82,7 @@ namespace Hcl
 
     Vector3& operator -= (Vector3& v1, const Vector3& v2)
     {
-        Hcl::Locker2 _(v1._m, v2._m);
+        Locker2 _(v1._m, v2._m);
         v1.x -= v2.x;
         v1.y -= v2.y;
         v1.z -= v2.z;
@@ -91,7 +91,7 @@ namespace Hcl
 
     Vector3& operator *= (Vector3& v1, long double q1)
     {
-        Hcl::Locker1 _(v1._m);
+        Locker1 _(v1._m);
         v1.x *= q1;
         v1.y *= q1;
         v1.z *= q1;
@@ -100,7 +100,7 @@ namespace Hcl
 
     Vector3& operator /= (Vector3& v1, long double q1)
     {
-        Hcl::Locker1 _(v1._m);
+        Locker1 _(v1._m);
         v1.x /= q1;
         v1.y /= q1;
         v1.z /= q1;
@@ -109,14 +109,14 @@ namespace Hcl
 
     QTextStream& operator >> (QTextStream& str, Vector3& v1)
     {
-        Hcl::Locker1 _(v1._m);
+        Locker1 _(v1._m);
         str >> v1.x >> v1.y >> v1.z;
         return str;
     }
 
     QTextStream& operator << (QTextStream& str, const Vector3& v1)
     {
-        Hcl::Locker1 _(v1._m);
+        Locker1 _(v1._m);
         str << v1.x << ' ' << v1.y << ' ' << v1.z;
         return str;
     }
