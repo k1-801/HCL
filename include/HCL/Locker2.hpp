@@ -24,15 +24,17 @@ namespace Hcl
         };
     }
 
-    class Locker : private internal::Locker
+    class Locker2 : private internal::Locker
     {
         private:
             std::lock_guard<std::mutex> _g1;
             std::lock_guard<std::mutex> _g2;
 
         public:
-            Locker(std::mutex&, std::mutex&);
+            Locker2(std::mutex&, std::mutex&);
     };
+    typedef std::lock_guard<std::mutex> Locker1;
 }
+
 
 #endif // HCL_LOCKER_HPP

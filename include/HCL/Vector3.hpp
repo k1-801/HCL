@@ -62,7 +62,7 @@ namespace Hcl
         friend Vector3& operator /= (Vector3&, long double);
 
         friend QTextStream& operator >> (QTextStream&, Vector3&);
-        friend QTextStream& operator << (QTextStream&, const Vector3);
+        friend QTextStream& operator << (QTextStream&, const Vector3&);
     };
 
     typedef Vector3 Rotation;
