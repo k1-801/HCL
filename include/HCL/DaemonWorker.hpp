@@ -1,20 +1,54 @@
-#ifndef HCL_DAEMONWORKER_H
-#define HCL_DAEMONWORKER_H
+#pragma once
 
+#ifndef HCL_DAEMONWORKER_HPP
+#define HCL_DAEMONWORKER_HPP
 
-namespace Hcl {
+/**
+  * This file is a part of Haont Common Library (HCL) [Daemon module]
+  *
+  * @project HCL
+  * @author k1-801
+  */
 
-class DaemonWorker : public QObject
+// Qt
+#include <QObject>
+
+namespace Hcl
 {
-    Q_OBJECT
-public:
-    explicit DaemonWorker(QObject *parent = 0);
+    class DaemonWorker;
+}
 
-signals:
+// HCL
+#include "DaemonManager.hpp"
+#include "DaemonMode.hpp"
 
-public slots:
-};
+namespace Hcl
+{
+    class DaemonWorker : public QObject
+    {
+        Q_OBJECT
 
-} // namespace Hcl
+        protected:
+            DaemonManager* f_daemonManager;
+            bool checkMode(DaemonMode);
+            void lockMode();
+            void setMode(DaemonMode);
 
-#endif // HCL_DAEMONWORKER_H
+        public:
+            explicit DaemonWorker();
+            virtual ~DaemonWorker();
+
+            static QString& getName();
+            void setManager(DaemonManager*);
+            virtual void help();
+            virtual int parseArg(int, char**);
+
+        signals:
+            void stop(int);
+
+        public slots:
+            virtual void exec();
+    };
+}
+
+#endif // HCL_DAEMONWORKER_HPP

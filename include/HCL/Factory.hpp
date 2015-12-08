@@ -1,11 +1,15 @@
-﻿#pragma once
+#pragma once
 
 #ifndef HCL_FACTORY_HPP
 #define HCL_FACTORY_HPP
 
 /**
- * Portable object factory class
+ * This file is a part of Haont Common Library (HCL)
+ * Contains factory - a portable object factory class
  * Builds objects of any registered subclass of T (may also build T itself, if registered)
+ *
+ * @project HCL
+ * @author k1-801
  */
 
 // C++

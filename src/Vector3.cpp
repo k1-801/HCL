@@ -9,11 +9,14 @@
 
 // C
 #include <math.h>
+// HCL
+#include "../../include/HCL/Locker.hpp"
 
 namespace Hcl
 {
     Vector3::Vector3()
     {
+        LOCK(_m);
         x = 0;
         y = 0;
         z = 0;
@@ -21,6 +24,7 @@ namespace Hcl
 
     Vector3::Vector3(std::nullptr_t)
     {
+        LOCK(_m);
         x = 0;
         y = 0;
         z = 0;
@@ -28,6 +32,7 @@ namespace Hcl
 
     Vector3::Vector3(const Vector3& v1)
     {
+        QLock1(_m);
         x = v1.x;
         y = v1.y;
         z = v1.z;
@@ -35,6 +40,7 @@ namespace Hcl
 
     Vector3::Vector3(long double x1, long double y1, long double z1)
     {
+        QLock1(_m);
         x = x1;
         y = y1;
         z = z1;
@@ -42,6 +48,7 @@ namespace Hcl
 
     Vector3& Vector3::operator = (const Vector3& v1)
     {
+        QLock1(_m);
         x = v1.x;
         y = v1.y;
         z = v1.z;

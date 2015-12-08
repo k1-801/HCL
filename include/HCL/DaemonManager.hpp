@@ -1,17 +1,16 @@
-﻿#pragma once
+#pragma once
 
 #ifndef HCL_DAEMONMANAGER_HPP
 #define HCL_DAEMONMANAGER_HPP
 
 /**
- * This file is a part of Haont Common Library
- * It contains a DaemonManager class definition
+ * This file is a part of Haont Common Library (HCL) [Daemon module]
+ * Contains a DaemonManager class definition
  *
  * DaemonManager is a class providing daemonization routines
  * Uses DBus for daemon controlling
- *
- * Usage:
- * #include <HCL/DaemonManager.hpp>
+ * @project HCL
+ * @author k1-801
  */
 
 // Qt

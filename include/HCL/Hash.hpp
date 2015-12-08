@@ -1,7 +1,14 @@
-﻿#pragma once
+#pragma once
 
 #ifndef HCL_HASH_HPP
 #define HCL_HASH_HPP
+
+/**
+ * This file is a part of Haont Common Library (HCL)
+ *
+ * @project HCL
+ * @author k1-801
+ */
 
 // C++
 #include <cstdint>

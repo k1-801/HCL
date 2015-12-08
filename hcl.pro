@@ -13,7 +13,8 @@ SOURCES += \
     src/Hash.cpp \
     \
     include/HCL/Factory.tpp \
-    src/Vector3.cpp
+    src/Vector3.cpp \
+    src/Locker.cpp
 
 HEADERS += \
     include/HCL/DaemonManager.hpp \
@@ -23,7 +24,8 @@ HEADERS += \
     include/HCL/Factory.hpp \
     include/HCL/Hash.hpp \
     include/HCL/DaemonMode.hpp \
-    include/HCL/Vector3.hpp
+    include/HCL/Vector3.hpp \
+    include/HCL/Locker.hpp
 
 unix
 {
