@@ -52,6 +52,13 @@ namespace Hcl
         return *this;
     }
 
+    long double Vector3::getX() const        {Locker1 _(_m); return x;}
+    long double Vector3::getY() const        {Locker1 _(_m); return y;}
+    long double Vector3::getZ() const        {Locker1 _(_m); return z;}
+    void        Vector3::setX(long double v) {Locker1 _(_m); x = v;}
+    void        Vector3::setY(long double v) {Locker1 _(_m); y = v;}
+    void        Vector3::setZ(long double v) {Locker1 _(_m); z = v;}
+    
     long double Vector3::sqlength() const {Hcl::Locker1 _(_m); return (x * x + y * y + z * z);}
     long double Vector3::length()   const {Hcl::Locker1 _(_m); return sqrt(sqlength());}
 
