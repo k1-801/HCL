@@ -1,4 +1,11 @@
-﻿#include "../include/HCL/DaemonManager.hpp"
+#include "../include/HCL/DaemonManager.hpp"
+
+/**
+ * This file is a part of Haont Common Library (HCL)
+ *
+ * @project HCL
+ * @author k1-801
+ */
 
 // C
 #include <signal.h>

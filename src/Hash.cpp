@@ -1,4 +1,11 @@
-﻿#include "../include/HCL/Hash.hpp"
+#include "../include/HCL/Hash.hpp"
+
+/**
+ * This file is a part of Haont Common Library (HCL)
+ *
+ * @project HCL
+ * @author k1-801
+ */
 
 // HCL
 #include "../include/HCL/Exception.hpp"
