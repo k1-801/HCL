@@ -15,13 +15,15 @@
 #include <mutex>
 // Qt
 #include <QTextStream>
+// HCL
+#include "../../include/HCL/Operators.hpp"
 
 namespace Hcl
 {
     class Vector3
     {
         private:
-            std::mutex _m;
+            mutable std::mutex _m;
             long double x;
             long double y;
             long double z;
@@ -59,8 +61,6 @@ namespace Hcl
         friend Vector3& operator *= (Vector3&, long double);
         friend Vector3& operator /= (Vector3&, long double);
 
-        friend QTextStream& operator >> (QTextStream&, long double&);
-        friend QTextStream& operator << (QTextStream&, long double);
         friend QTextStream& operator >> (QTextStream&, Vector3&);
         friend QTextStream& operator << (QTextStream&, const Vector3);
     };
