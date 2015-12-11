@@ -67,8 +67,7 @@ namespace \
             } \
             static std::shared_ptr<bns::bname> build() \
             { \
-                std::shared_ptr<dns::dname> tmp = std::make_shared<dns::dname>(); \
-                return std::shared_ptr<bns::bname>(tmp); \
+                return std::shared_ptr<bns::bname>(std::make_shared<dns::dname>()); \
             } \
     } \
     REGISTRATOR_T(bns, bname, dns, dname)::_instance; \

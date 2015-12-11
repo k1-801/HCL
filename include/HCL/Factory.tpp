@@ -7,6 +7,9 @@
  * @author k1-801
  */
 
+// Qt
+#include <QObject>
+
 namespace Hcl
 {
     template<class T>
@@ -20,12 +23,12 @@ namespace Hcl
     void Factory<T>::add(QString name, FactoryBuilderFunc<T> func)
     {
         if(name.isEmpty())
-            throw Hcl::Exception("Hcl::Factory::add(): no name given");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::add(): no name given"));
         Hash hash(name);
         if(_funcs.find(hash) != _funcs.end())
-            throw Hcl::Exception("Hcl::Factory::add(): hash collision");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::add(): hash collision"));
         if(!func)
-            throw Hcl::Exception("Hcl::Factory::add(): no builder function given");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::add(): no builder function given"));
         _funcs[hash] = func;
         _names[hash] = name;
     }
@@ -34,7 +37,7 @@ namespace Hcl
     std::shared_ptr<T> Factory<T>::get(Hash hash) const
     {
         if(_funcs.find(hash) == _funcs.end())
-            throw Hcl::Exception("Hcl::Factory::get(): class is not registered");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::get(): class is not registered"));
         return _funcs[hash]();
     }
 
@@ -49,7 +52,7 @@ namespace Hcl
     FactoryBuilderFunc<T> Factory<T>::getFunc(Hash hash) const
     {
         if(_funcs.find(hash) == _funcs.end())
-            throw Hcl::Exception("Hcl::Factory::getFunc(): class is not registered");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::getFunc(): class is not registered"));
         return _funcs[hash];
     }
 
@@ -57,7 +60,7 @@ namespace Hcl
     QString Factory<T>::getName(Hash hash) const
     {
         if(_names.find(hash) == _names.end())
-            throw Hcl::Exception("Hcl::Factory::getName(): class is not registered");
+            throw Hcl::Exception(QObject::tr("Hcl::Factory::getName(): class is not registered"));
         return _names[hash];
     }
 
