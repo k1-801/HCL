@@ -7,6 +7,12 @@
  * @author k1-801
  */
 
+// Qt
+#include <QObject>
+// HCL
+#include "../include/HCL/Exception.hpp"
+#include "../include/HCL/Locker2.hpp"
+
 QTextStream& operator >> (QTextStream& str, bool& b)
 {
     short tmp;
@@ -37,7 +43,9 @@ QTextStream& operator << (QTextStream& str, long double ld)
 
 QTextStream& operator >> (QTextStream& str, QColor& c)
 {
-    c.setNamedColor(str.read(6));
+    QString buf;
+    str >> buf;
+    c.setNamedColor(buf);
     return str;
 }
 

@@ -13,6 +13,8 @@
 // Qt
 #include <QColor>
 #include <QTextStream>
+// HCL
+#include "../include/HCL/Vector3.hpp"
 
 QTextStream& operator >> (QTextStream&, bool&);
 QTextStream& operator << (QTextStream&, bool);

@@ -10,7 +10,8 @@
 // C
 #include <math.h>
 // HCL
-#include "../../include/HCL/Locker2.hpp"
+#include "../include/HCL/Exception.hpp"
+#include "../include/HCL/Locker2.hpp"
 
 namespace Hcl
 {
@@ -58,9 +59,40 @@ namespace Hcl
     void        Vector3::setX(long double v) {Locker1 _(_m); x = v;}
     void        Vector3::setY(long double v) {Locker1 _(_m); y = v;}
     void        Vector3::setZ(long double v) {Locker1 _(_m); z = v;}
-    
+
     long double Vector3::sqlength() const {Locker1 _(_m); return (x * x + y * y + z * z);}
     long double Vector3::length()   const {Locker1 _(_m); return sqrt(sqlength());}
+
+    void Vector3::setValue(QString value)
+    {
+        Hcl::Locker1 _(_m);
+        if(value == "0")
+        {
+            x = 0;
+            y = 0;
+            z = 0;
+        }
+        else
+        {
+            QStringList params = value.split(';');
+            if(params.size() == 3)
+            {
+                // X
+                QTextStream str(&params[0]);
+                str >> z;
+                // Y
+                str.setString(&params[1]);
+                str >> y;
+                // Z
+                str.setString(&params[2]);
+                str >> z;
+            }
+            else
+            {
+                throw Hcl::Exception(QObject::tr("Hcl::Vector3: Invalid value"));
+            }
+        }
+    }
 
     Vector3 operator + (const Vector3& v1) {Locker1 _(v1._m); return v1;}
     Vector3 operator - (const Vector3& v1) {Locker1 _(v1._m); return Vector3(-v1.x, -v1.y, -v1.z);}
@@ -107,17 +139,18 @@ namespace Hcl
         return v1;
     }
 
-    QTextStream& operator >> (QTextStream& str, Vector3& v1)
+    QTextStream& operator >> (QTextStream& str, Hcl::Vector3& v)
     {
-        Locker1 _(v1._m);
-        str >> v1.x >> v1.y >> v1.z;
+        QString buf;
+        str >> buf;
+        v.setValue(buf);
         return str;
     }
 
-    QTextStream& operator << (QTextStream& str, const Vector3& v1)
+    QTextStream& operator << (QTextStream& str, const Hcl::Vector3& v)
     {
-        Locker1 _(v1._m);
-        str << v1.x << ' ' << v1.y << ' ' << v1.z;
+        Hcl::Locker1(v._m);
+        str << v.getX() << ';' << v.getY() << ';' << v.getZ();
         return str;
     }
 }

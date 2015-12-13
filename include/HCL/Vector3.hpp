@@ -15,6 +15,12 @@
 #include <mutex>
 // Qt
 #include <QTextStream>
+
+namespace Hcl
+{
+    class Vector3;
+}
+
 // HCL
 #include "../../include/HCL/Operators.hpp"
 
@@ -23,12 +29,12 @@ namespace Hcl
     class Vector3
     {
         private:
-            mutable std::mutex _m;
             long double x;
             long double y;
             long double z;
 
         public:
+            mutable std::mutex _m;
             Vector3();
             Vector3(std::nullptr_t);
             Vector3(const Vector3&);
@@ -47,6 +53,9 @@ namespace Hcl
             long double sqlength() const;
             long double   length() const;
 
+            void setValue(QString);
+            QString getValue();
+
         friend Vector3 operator + (const Vector3&);
         friend Vector3 operator - (const Vector3&);
 
@@ -62,7 +71,7 @@ namespace Hcl
         friend Vector3& operator /= (Vector3&, long double);
 
         friend QTextStream& operator >> (QTextStream&, Vector3&);
-        friend QTextStream& operator << (QTextStream&, const Vector3&);
+        friend QTextStream& operator << (QTextStream&, Vector3&);
     };
 
     typedef Vector3 Rotation;
