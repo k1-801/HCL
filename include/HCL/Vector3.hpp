@@ -14,6 +14,7 @@
 #include <cstddef>
 #include <mutex>
 // Qt
+#include <QDebug>
 #include <QTextStream>
 
 namespace Hcl
@@ -54,7 +55,7 @@ namespace Hcl
             long double   length() const;
 
             void setValue(QString);
-            QString getValue();
+            QString getValue() const;
 
         friend Vector3 operator + (const Vector3&);
         friend Vector3 operator - (const Vector3&);
@@ -71,7 +72,8 @@ namespace Hcl
         friend Vector3& operator /= (Vector3&, long double);
 
         friend QTextStream& operator >> (QTextStream&, Vector3&);
-        friend QTextStream& operator << (QTextStream&, Vector3&);
+        friend QTextStream& operator << (QTextStream&, const Vector3&);
+        friend QDebug operator << (QDebug, const Vector3&);
     };
 
     typedef Vector3 Rotation;

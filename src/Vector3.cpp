@@ -61,11 +61,11 @@ namespace Hcl
     void        Vector3::setZ(long double v) {Locker1 _(_m); z = v;}
 
     long double Vector3::sqlength() const {Locker1 _(_m); return (x * x + y * y + z * z);}
-    long double Vector3::length()   const {Locker1 _(_m); return sqrt(sqlength());}
+    long double Vector3::length()   const {return sqrt(sqlength());}
 
     void Vector3::setValue(QString value)
     {
-        Hcl::Locker1 _(_m);
+        Locker1 _(_m);
         if(value == "0")
         {
             x = 0;
@@ -77,21 +77,27 @@ namespace Hcl
             QStringList params = value.split(';');
             if(params.size() == 3)
             {
-                // X
-                QTextStream str(&params[0]);
-                str >> z;
-                // Y
-                str.setString(&params[1]);
-                str >> y;
-                // Z
-                str.setString(&params[2]);
-                str >> z;
+                QTextStream strX(&params[0]);
+                QTextStream strY(&params[1]);
+                QTextStream strZ(&params[2]);
+                strX >> x;
+                strY >> y;
+                strZ >> z;
             }
             else
             {
                 throw Hcl::Exception(QObject::tr("Hcl::Vector3: Invalid value"));
             }
         }
+    }
+
+    QString Vector3::getValue() const
+    {
+        QString result;
+        QTextStream str(&result);
+        str.setRealNumberNotation(QTextStream::FixedNotation);
+        str << x << ';' << y << ';' << z;
+        return result;
     }
 
     Vector3 operator + (const Vector3& v1) {Locker1 _(v1._m); return v1;}
@@ -141,6 +147,7 @@ namespace Hcl
 
     QTextStream& operator >> (QTextStream& str, Hcl::Vector3& v)
     {
+        Locker1 _(v._m);
         QString buf;
         str >> buf;
         v.setValue(buf);
@@ -149,8 +156,15 @@ namespace Hcl
 
     QTextStream& operator << (QTextStream& str, const Hcl::Vector3& v)
     {
-        Hcl::Locker1(v._m);
-        str << v.getX() << ';' << v.getY() << ';' << v.getZ();
+        Locker1(v._m);
+        str << v.x << ';' << v.y << ';' << v.z;
+        return str;
+    }
+
+    QDebug operator << (QDebug str, const Hcl::Vector3& v)
+    {
+        Locker1(v._m);
+        str << v.getValue();
         return str;
     }
 }

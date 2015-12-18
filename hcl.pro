@@ -3,6 +3,7 @@ QT += dbus
 TARGET = hcl
 TEMPLATE = lib
 CONFIG += dynamiclib
+VERSION = 0.1.10
 
 QMAKE_CXXFLAGS += -std=c++14
 

@@ -54,3 +54,10 @@ QTextStream& operator << (QTextStream& str, QColor c)
     str << c.name();
     return str;
 }
+
+// QDebug
+QDebug operator << (QDebug str, long double ld)
+{
+    str << (double)(ld);
+    return str;
+}

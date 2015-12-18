@@ -12,16 +12,20 @@
 
 // Qt
 #include <QColor>
+#include <QDebug>
 #include <QTextStream>
 // HCL
 #include "../include/HCL/Vector3.hpp"
 
+// QTextStream
 QTextStream& operator >> (QTextStream&, bool&);
 QTextStream& operator << (QTextStream&, bool);
 QTextStream& operator >> (QTextStream&, long double&);
 QTextStream& operator << (QTextStream&, long double);
 QTextStream& operator >> (QTextStream&, QColor&);
 QTextStream& operator << (QTextStream&, QColor);
+// QDebug
+QDebug operator << (QDebug, long double);
 
 #endif // OPERATORS_HPP
 
